@@ -16,9 +16,9 @@ import { useEffect, useRef, useState } from "react";
 const AFFILIATE_LINKS = {
   // 楽天アフィリエイト（報酬率4.0%）
   rakuten: {
-    yamazaki: "https://search.rakuten.co.jp/search/mall/%E5%B1%B1%E5%B4%8E+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC/510915/?scid=af_pc_etc&sc2id=af_103_0_10001872",
-    hakushu: "https://search.rakuten.co.jp/search/mall/%E7%99%BD%E5%B7%9E+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC/510915/?scid=af_pc_etc&sc2id=af_103_0_10001872",
-    hibiki: "https://search.rakuten.co.jp/search/mall/%E9%9F%BF+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC/510915/?scid=af_pc_etc&sc2id=af_103_0_10001872",
+    yamazaki: "https://hb.afl.rakuten.co.jp/ichiba/53717089.d5ab6064.5371708b.7357bb63/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkawachi%2F3939220001481%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D",
+    hakushu: "https://hb.afl.rakuten.co.jp/ichiba/53717443.92c5e772.53717444.5a6c8d6d/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsoukaidrink%2F4901777453067%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D",
+    hibiki: "https://hb.afl.rakuten.co.jp/ichiba/537175f7.0582b266.537175f8.65bc81cc/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkomoriliquor%2F16-3%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D",
   },
   // Amazonアソシエイト（報酬率8.0%）
   amazon: {
