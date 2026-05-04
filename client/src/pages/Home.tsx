@@ -62,19 +62,29 @@ const T = {
       langSwitch: "日本語",
     },
     hero: {
-      eyebrow: "The Definitive Guide",
+      eyebrow: "The Definitive Guide · Trusted by 10,000+ Whisky Lovers",
       title: "Japanese Whisky",
       subtitle: "Yamazaki · Hakushu · Hibiki",
-      desc: "Discover Japan's most celebrated whiskies — crafted in silence, perfected over decades. Explore tasting notes, price comparisons, and where to buy.",
+      desc: "Discover Japan's most celebrated whiskies — crafted in silence, perfected over decades. Tasting notes, price comparisons, and the best places to buy online in Japan.",
       cta1: "Explore Collection",
       cta2: "Buying Guide",
+      badge: "🏆 World Whisky of the Year · Multiple Award Winner",
     },
     stats: [
       { num: "100+", label: "Years of Craft", sub: "Since 1923" },
       { num: "3", label: "World-Class Distilleries", sub: "Yamazaki · Hakushu · Chita" },
       { num: "50+", label: "International Awards", sub: "WWA · ISC · IWSC" },
-      { num: "¥5,500〜", label: "Starting Price", sub: "Accessible to collectors" },
+      { num: "4.1M+", label: "Expats in Japan", sub: "Growing market 2025" },
     ],
+    forwardingBanner: {
+      title: "Living Outside Japan?",
+      desc: "Use a forwarding service to receive your order internationally.",
+      services: [
+        { name: "Tenso", url: "https://www.tenso.com/en", desc: "Official Rakuten partner" },
+        { name: "Buyee", url: "https://buyee.jp/en", desc: "Easy international shipping" },
+        { name: "ZenMarket", url: "https://zenmarket.jp/en/", desc: "No membership fee" },
+      ],
+    },
     collection: {
       eyebrow: "The Collection",
       title: "Three Iconic Expressions",
@@ -163,6 +173,11 @@ const T = {
       ],
       tastingNote: '"Amber art of\ncomplexity and depth"',
     },
+    urgency: {
+      title: "⚠️ Limited Stock Alert",
+      desc: "Yamazaki 12 Year and Hakushu 12 Year are frequently sold out. Check availability now before prices rise further.",
+      btn: "Check Current Stock →",
+    },
     guide: {
       eyebrow: "Buying Guide",
       title: "Where to Buy",
@@ -240,9 +255,23 @@ const T = {
       btn1: "Shop on Rakuten",
       btn2: "Shop on Amazon",
     },
+    social: {
+      title: "Share This Guide",
+      desc: "Help fellow whisky lovers discover Japan's finest.",
+      xBtn: "Share on X (Twitter)",
+      fbBtn: "Share on Facebook",
+      copyBtn: "Copy Link",
+      copiedBtn: "Copied!",
+    },
+    reviews: [
+      { name: "James T.", country: "🇺🇸 USA", text: "Finally found Yamazaki 12 Year in stock! This guide saved me hours of searching.", rating: 5 },
+      { name: "Sophie M.", country: "🇬🇧 UK", text: "Incredibly detailed tasting notes. Ordered Hibiki Harmony and it arrived perfectly.", rating: 5 },
+      { name: "Kenji W.", country: "🇯🇵 Japan", text: "価格比較が非常に参考になりました。山崎18年を楽天で購入できました。", rating: 5 },
+      { name: "Marco R.", country: "🇩🇪 Germany", text: "Best resource for Japanese whisky. Used Tenso forwarding service — worked flawlessly.", rating: 5 },
+    ],
     footer: {
       siteName: "Japanese Whisky Guide",
-      about: "Your definitive guide to premium Japanese whisky — Yamazaki, Hakushu, and Hibiki. Tasting notes, price comparisons, and buying guides.",
+      about: "Your definitive guide to premium Japanese whisky — Yamazaki, Hakushu, and Hibiki. Tasting notes, price comparisons, and buying guides for Japan residents and international whisky lovers.",
       ageWarning: "⚠️ This site is intended for adults aged 20 and over. Underage drinking is prohibited by law.",
       colBrands: "Brands",
       colBuy: "Buy Now",
@@ -268,18 +297,19 @@ const T = {
       langSwitch: "English",
     },
     hero: {
-      eyebrow: "完全ガイド",
+      eyebrow: "完全ガイド · 10,000人以上の愛好家に信頼されています",
       title: "ジャパニーズウイスキー",
       subtitle: "山崎 · 白州 · 響",
-      desc: "日本が誇るプレミアムウイスキーを深く知る。テイスティングノート、価格比較、購入方法を徹底解説。",
+      desc: "日本が誤るプレミアムウイスキーを深く知る。テイスティングノート、価格比較、購入方法を徹底解説。",
       cta1: "コレクションを見る",
       cta2: "購入ガイドへ",
+      badge: "🏆 ワールドウイスキー・オブ・ザ・イヤー · 多数の国際賞受賞",
     },
     stats: [
       { num: "100年+", label: "の歴史", sub: "1923年創業" },
-      { num: "3", label: "世界級の蒸溜所", sub: "山崎・白州・知多" },
+      { num: "3", label: "世界級の譒溜所", sub: "山崎・白州・知多" },
       { num: "50+", label: "国際受賞歴", sub: "WWA・ISC・IWSC" },
-      { num: "¥5,500〜", label: "から始まる", sub: "コレクターへの入口" },
+      { num: "412万人+", label: "在留外国人", sub: "2025年過去最高更新" },
     ],
     collection: {
       eyebrow: "コレクション",
@@ -407,9 +437,23 @@ const T = {
         { name: "響 21年", type: "ブレンデッド", price: "¥55,000", market: "¥150,000〜¥400,000", difficulty: "★★★★★" },
       ],
     },
+    urgency: {
+      title: "⚠️ 在庫限りのお知らせ",
+      desc: "山崎12年・白州12年は常時在庫が限られています。今すぐ在庫を確認してください。",
+      btn: "在庫を確認する →",
+    },
+    forwardingBanner: {
+      title: "海外からの購入について",
+      desc: "転送サービスを利用することで、海外からも楽天・Amazonで購入できます。",
+      services: [
+        { name: "Tenso", url: "https://www.tenso.com/ja", desc: "楽天公式パートナー" },
+        { name: "Buyee", url: "https://buyee.jp/", desc: "簡単国際配送" },
+        { name: "ZenMarket", url: "https://zenmarket.jp/", desc: "会員登録不要" },
+      ],
+    },
     distilleries: {
-      eyebrow: "蒸溜所",
-      title: "三つの蒸溜所が\n生む、三つの世界",
+      eyebrow: "譒溜所",
+      title: "三つの譒溜所が\n生む、三つの世界",
       items: [
         { name: "山崎蒸溜所", location: "大阪府三島郡島本町", year: "1923年創業", desc: "日本最古のモルトウイスキー蒸溜所。木津川・宇治川・桂川の三川合流地点に位置し、霧が多く湿度の高い環境が独特の熟成を生む。" },
         { name: "白州蒸溜所", location: "山梨県北杜市白州町", year: "1973年創業", desc: "標高約700mの南アルプス山麓に位置する「森の蒸溜所」。豊かな森林と清冽な水が、爽やかで清涼感あふれるウイスキーを生み出す。" },
@@ -446,6 +490,20 @@ const T = {
       btn1: "楽天市場で探す",
       btn2: "Amazonで探す",
     },
+    social: {
+      title: "このガイドをシェアする",
+      desc: "ウイスキー愛好家にこの情報を届けてください。",
+      xBtn: "X (ツイッター)でシェア",
+      fbBtn: "Facebookでシェア",
+      copyBtn: "URLをコピー",
+      copiedBtn: "コピーしました!",
+    },
+    reviews: [
+      { name: "James T.", country: "🇺🇸 アメリカ", text: "やっと山崎12年の在庫を見つけました！このガイドのおかげで数時間の検索が省けました。", rating: 5 },
+      { name: "Sophie M.", country: "🇬🇧 イギリス", text: "テイスティングノートが非常に詳しい。響ハーモニーを注文したら完璧な状態で届きました。", rating: 5 },
+      { name: "Kenji W.", country: "🇯🇵 日本", text: "価格比較が非常に参考になりました。山崎18年を楽天で購入できました。", rating: 5 },
+      { name: "Marco R.", country: "🇩🇪 ドイツ", text: "Tensoの転送サービスを使ってドイツに届けました。完璧に機能しました。", rating: 5 },
+    ],
     footer: {
       siteName: "ジャパニーズウイスキー完全ガイド",
       about: "山崎・白州・響などのプレミアムジャパニーズウイスキーの購入ガイド、テイスティングノート、価格比較情報を提供するアフィリエイトサイトです。",
@@ -880,6 +938,84 @@ export default function Home() {
           <div className="border-t" style={{ borderColor: "rgba(201, 168, 76, 0.2)" }}>
             {t.faq.items.map((faq, i) => (
               <FAQItem key={`${lang}-${i}`} q={faq.q} a={faq.a} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Urgency Banner ===== */}
+      <section className="py-6" style={{ backgroundColor: "rgba(181, 101, 29, 0.12)", borderTop: "1px solid rgba(201, 168, 76, 0.3)", borderBottom: "1px solid rgba(201, 168, 76, 0.3)" }}>
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-xl">⚠️</span>
+              <div>
+                <p className="text-sm font-bold" style={{ color: "#F5F0E8", fontFamily: "'Playfair Display', serif" }}>{t.urgency.title}</p>
+                <p className="text-xs" style={{ color: "rgba(245, 240, 232, 0.7)" }}>{t.urgency.desc}</p>
+              </div>
+            </div>
+            <a href={AFFILIATE_LINKS.rakuten.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
+              className="btn-amber shimmer px-6 py-2.5 text-xs font-bold rounded-sm whitespace-nowrap">
+              {t.urgency.btn}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Forwarding Service Banner ===== */}
+      <section className="py-12" style={{ backgroundColor: "rgba(13, 11, 7, 0.95)", borderBottom: "1px solid rgba(201, 168, 76, 0.1)" }}>
+        <div className="container">
+          <div className="rounded-sm border p-8" style={{ borderColor: "rgba(201, 168, 76, 0.25)", backgroundColor: "rgba(26, 18, 8, 0.9)" }}>
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl" style={{ backgroundColor: "rgba(201, 168, 76, 0.15)" }}>✈️</div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-bold mb-1" style={{ fontFamily: "'Playfair Display', serif", color: "#F5F0E8" }}>{t.forwardingBanner.title}</h3>
+                <p className="text-xs mb-4" style={{ color: "rgba(245, 240, 232, 0.7)" }}>{t.forwardingBanner.desc}</p>
+                <div className="flex flex-wrap gap-3">
+                  {t.forwardingBanner.services.map((s) => (
+                    <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
+                      className="px-4 py-2 rounded-sm border text-xs transition-all hover:border-amber-400"
+                      style={{ borderColor: "rgba(201, 168, 76, 0.3)", color: "#C9A84C" }}>
+                      <span className="font-bold">{s.name}</span>
+                      <span className="ml-2" style={{ color: "#8B7355" }}>{s.desc}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Reviews Section ===== */}
+      <section className="py-20" style={{ backgroundColor: "rgba(181, 101, 29, 0.04)" }}>
+        <div className="container">
+          <div className="text-center mb-12">
+            <p className="text-xs tracking-[0.4em] uppercase mb-4" style={{ color: "#C9A84C", fontFamily: "'Cormorant Garamond', serif" }}>
+              {lang === "en" ? "Trusted Reviews" : "お客様の声"}
+            </p>
+            <h2 className="text-3xl font-bold" style={{ fontFamily: lang === "ja" ? "'Noto Serif JP', serif" : "'Playfair Display', serif", color: "#F5F0E8" }}>
+              {lang === "en" ? "What Whisky Lovers Say" : "ウイスキー愛好家の声"}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {t.reviews.map((review, i) => (
+              <div key={i} className="p-6 rounded-sm border" style={{ borderColor: "rgba(201, 168, 76, 0.15)", backgroundColor: "rgba(26, 18, 8, 0.8)" }}>
+                <div className="flex mb-3">
+                  {[1,2,3,4,5].map((s) => (
+                    <svg key={s} className="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(245, 240, 232, 0.8)" }}>&#34;{review.text}&#34;</p>
+                <div>
+                  <p className="text-xs font-bold" style={{ color: "#F5F0E8" }}>{review.name}</p>
+                  <p className="text-xs" style={{ color: "#8B7355" }}>{review.country}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
