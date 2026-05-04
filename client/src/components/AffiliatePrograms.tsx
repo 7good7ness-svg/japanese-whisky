@@ -1,14 +1,12 @@
 /**
  * AffiliatePrograms Section
  * Shows domestic & overseas high-commission alcohol affiliate programs
+ * Mobile-first: card layout on small screens, table on md+
  */
-
 type Lang = "en" | "ja";
-
 interface Props {
   lang: Lang;
 }
-
 const OVERSEAS = [
   {
     name: "LIQUORexam",
@@ -71,7 +69,6 @@ const OVERSEAS = [
     noteJa: "世界最大のワインアプリ",
   },
 ];
-
 const DOMESTIC = [
   {
     nameEn: "Kanai Sake Brewery",
@@ -117,20 +114,18 @@ const DOMESTIC = [
 
 export default function AffiliatePrograms({ lang }: Props) {
   const isEn = lang === "en";
-
   const overseasHeaders = isEn
     ? ["Program", "Country", "Category", "Commission", "Cookie", "Highlight"]
     : ["プログラム", "国", "カテゴリ", "報酬率", "Cookie期間", "特徴"];
-
   const domesticHeaders = isEn
     ? ["Program", "Category", "Commission", "ASP", "Note"]
     : ["プログラム", "カテゴリ", "報酬率", "ASP", "備考"];
 
   return (
-    <section className="py-24" style={{ backgroundColor: "rgba(13, 11, 7, 0.98)" }}>
-      <div className="container">
+    <section className="py-16 md:py-24" style={{ backgroundColor: "rgba(13, 11, 7, 0.98)" }}>
+      <div className="container px-4 md:px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <p
             className="text-xs tracking-[0.4em] uppercase mb-4"
             style={{ color: "#C9A84C", fontFamily: "'Cormorant Garamond', serif" }}
@@ -138,7 +133,7 @@ export default function AffiliatePrograms({ lang }: Props) {
             {isEn ? "For Affiliate Marketers" : "アフィリエイター向け"}
           </p>
           <h2
-            className="text-4xl font-bold mb-4"
+            className="text-2xl md:text-4xl font-bold mb-4"
             style={{
               fontFamily: isEn ? "'Playfair Display', serif" : "'Noto Serif JP', serif",
               color: "#F5F0E8",
@@ -159,13 +154,54 @@ export default function AffiliatePrograms({ lang }: Props) {
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(201, 168, 76, 0.2)" }} />
-            <p className="text-xs tracking-[0.4em] uppercase px-4" style={{ color: "#C9A84C" }}>
-              {isEn ? "🌍 Overseas High-Commission Programs" : "🌍 海外の高報酬プログラム"}
+            <p className="text-xs tracking-[0.4em] uppercase px-4 whitespace-nowrap" style={{ color: "#C9A84C" }}>
+              {isEn ? "🌍 Overseas Programs" : "🌍 海外の高報酬プログラム"}
             </p>
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(201, 168, 76, 0.2)" }} />
           </div>
+
+          {/* Mobile: Card layout */}
+          <div className="md:hidden space-y-3">
+            {OVERSEAS.map((row, i) => (
+              <div
+                key={i}
+                className="rounded border p-4"
+                style={{
+                  borderColor: "rgba(201, 168, 76, 0.2)",
+                  backgroundColor: i % 2 === 0 ? "rgba(26, 18, 8, 0.9)" : "rgba(20, 14, 6, 0.9)",
+                }}
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <span
+                    className="font-bold text-sm"
+                    style={{ color: "#F5F0E8", fontFamily: "'Playfair Display', serif" }}
+                  >
+                    {row.name}
+                  </span>
+                  <span
+                    className="text-xs font-bold ml-2 shrink-0"
+                    style={{ color: "#C9A84C" }}
+                  >
+                    {row.comm}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2 text-xs mb-2">
+                  <span style={{ color: "rgba(245, 240, 232, 0.7)" }}>{row.country}</span>
+                  <span style={{ color: "rgba(245, 240, 232, 0.5)" }}>·</span>
+                  <span style={{ color: "rgba(245, 240, 232, 0.7)" }}>{isEn ? row.catEn : row.catJa}</span>
+                  <span style={{ color: "rgba(245, 240, 232, 0.5)" }}>·</span>
+                  <span style={{ color: "rgba(245, 240, 232, 0.6)" }}>Cookie: {row.cookie}</span>
+                </div>
+                <p className="text-xs" style={{ color: "rgba(245, 240, 232, 0.6)" }}>
+                  {isEn ? row.noteEn : row.noteJa}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: Table layout */}
           <div
-            className="overflow-x-auto rounded-sm border"
+            className="hidden md:block overflow-x-auto rounded-sm border"
             style={{ borderColor: "rgba(201, 168, 76, 0.2)" }}
           >
             <table className="w-full text-sm">
@@ -209,10 +245,7 @@ export default function AffiliatePrograms({ lang }: Props) {
                     <td className="px-4 py-3 text-xs" style={{ color: "rgba(245, 240, 232, 0.7)" }}>
                       {isEn ? row.catEn : row.catJa}
                     </td>
-                    <td
-                      className="px-4 py-3 text-xs font-bold"
-                      style={{ color: "#C9A84C" }}
-                    >
+                    <td className="px-4 py-3 text-xs font-bold" style={{ color: "#C9A84C" }}>
                       {row.comm}
                     </td>
                     <td className="px-4 py-3 text-xs" style={{ color: "rgba(245, 240, 232, 0.6)" }}>
@@ -232,13 +265,46 @@ export default function AffiliatePrograms({ lang }: Props) {
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(201, 168, 76, 0.2)" }} />
-            <p className="text-xs tracking-[0.4em] uppercase px-4" style={{ color: "#C9A84C" }}>
+            <p className="text-xs tracking-[0.4em] uppercase px-4 whitespace-nowrap" style={{ color: "#C9A84C" }}>
               {isEn ? "🇯🇵 Japan Domestic Programs" : "🇯🇵 国内プログラム"}
             </p>
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(201, 168, 76, 0.2)" }} />
           </div>
+
+          {/* Mobile: Card layout */}
+          <div className="md:hidden space-y-3">
+            {DOMESTIC.map((row, i) => (
+              <div
+                key={i}
+                className="rounded border p-4"
+                style={{
+                  borderColor: "rgba(201, 168, 76, 0.2)",
+                  backgroundColor: i % 2 === 0 ? "rgba(26, 18, 8, 0.9)" : "rgba(20, 14, 6, 0.9)",
+                }}
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <span className="font-bold text-sm" style={{ color: "#F5F0E8" }}>
+                    {isEn ? row.nameEn : row.nameJa}
+                  </span>
+                  <span className="text-xs font-bold ml-2 shrink-0" style={{ color: "#C9A84C" }}>
+                    {row.comm}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2 text-xs mb-2">
+                  <span style={{ color: "rgba(245, 240, 232, 0.7)" }}>{isEn ? row.catEn : row.catJa}</span>
+                  <span style={{ color: "rgba(245, 240, 232, 0.5)" }}>·</span>
+                  <span style={{ color: "rgba(245, 240, 232, 0.6)" }}>ASP: {row.asp}</span>
+                </div>
+                <p className="text-xs" style={{ color: "rgba(245, 240, 232, 0.6)" }}>
+                  {isEn ? row.noteEn : row.noteJa}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: Table layout */}
           <div
-            className="overflow-x-auto rounded-sm border"
+            className="hidden md:block overflow-x-auto rounded-sm border"
             style={{ borderColor: "rgba(201, 168, 76, 0.2)" }}
           >
             <table className="w-full text-sm">
@@ -276,10 +342,7 @@ export default function AffiliatePrograms({ lang }: Props) {
                     <td className="px-4 py-3 text-xs" style={{ color: "rgba(245, 240, 232, 0.7)" }}>
                       {isEn ? row.catEn : row.catJa}
                     </td>
-                    <td
-                      className="px-4 py-3 text-xs font-bold"
-                      style={{ color: "#C9A84C" }}
-                    >
+                    <td className="px-4 py-3 text-xs font-bold" style={{ color: "#C9A84C" }}>
                       {row.comm}
                     </td>
                     <td className="px-4 py-3 text-xs" style={{ color: "rgba(245, 240, 232, 0.6)" }}>
@@ -297,16 +360,13 @@ export default function AffiliatePrograms({ lang }: Props) {
 
         {/* Strategy Note */}
         <div
-          className="rounded-sm border p-6"
+          className="rounded-sm border p-4 md:p-6"
           style={{
             borderColor: "rgba(201, 168, 76, 0.25)",
             backgroundColor: "rgba(181, 101, 29, 0.08)",
           }}
         >
-          <p
-            className="text-xs tracking-widest uppercase mb-2"
-            style={{ color: "#C9A84C" }}
-          >
+          <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "#C9A84C" }}>
             {isEn ? "💡 Strategy Insight" : "💡 収益最大化のヒント"}
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "rgba(245, 240, 232, 0.8)" }}>
