@@ -3,9 +3,6 @@
  * Dark amber theme, Playfair Display + Noto Serif JP
  * English-first SEO landing page with Japanese toggle
  *
- * Affiliate Links:
- * - Rakuten Affiliate: 4.0% commission (alcohol category)
- * - Amazon Associates: 8.0% commission (alcohol category)
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -183,7 +180,7 @@ const T = {
       title: "Where to Buy",
       desc: "Find the best prices on Yamazaki, Hakushu, and Hibiki across Japan's top platforms.",
       rakutenTitle: "Rakuten Ichiba",
-      rakutenComm: "4.0% commission · Points rewards",
+      rakutenComm: "Rakuten Points · Gift wrapping",
       rakutenFeatures: [
         "Earn & spend Rakuten Points",
         "Big discounts during Super Sale",
@@ -193,10 +190,9 @@ const T = {
       ],
       rakutenBtn: "Shop on Rakuten →",
       amazonTitle: "Amazon Japan",
-      amazonComm: "8.0% commission · Next-day delivery",
+      amazonComm: "Amazon Prime · Fast delivery",
       amazonFeatures: [
         "Prime next-day to 2-day delivery",
-        "Highest 8% commission rate",
         "Subscribe & Save for repeat orders",
         "Clear returns & exchange policy",
         "Alexa reorder integration",
@@ -404,7 +400,7 @@ const T = {
       title: "賢い購入ガイド",
       desc: "希少なジャパニーズウイスキーを最安値・最適な方法で入手するためのガイド。",
       rakutenTitle: "楽天市場",
-      rakutenComm: "報酬率 4.0% · ポイント還元あり",
+      rakutenComm: "楽天ポイント還元 ・ ギフト包装対応",
       rakutenFeatures: [
         "楽天ポイントが貯まる・使える",
         "楽天スーパーセール時に大幅割引",
@@ -414,10 +410,9 @@ const T = {
       ],
       rakutenBtn: "楽天市場でウイスキーを探す →",
       amazonTitle: "Amazon",
-      amazonComm: "報酬率 8.0% · 翌日配送対応",
+      amazonComm: "Amazon Prime ・ 翔日配送",
       amazonFeatures: [
-        "Primeなら翌日〜2日以内に配送",
-        "お酒カテゴリで報酬率8%と高率",
+        "Amazon Primeで翔日～2日以内に配送",
         "定期おトク便で継続購入が割安",
         "返品・交換ポリシーが明確",
         "Alexa連携でリピート購入が簡単",
