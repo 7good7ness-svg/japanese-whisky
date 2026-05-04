@@ -22,9 +22,9 @@ const AFFILIATE_LINKS = {
   },
   // Amazonアソシエイト（報酬率8.0%）
   amazon: {
-    yamazaki: "https://www.amazon.co.jp/s?k=%E5%B1%B1%E5%B4%8E+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&i=grocery&tag=your-associate-id-22",
-    hakushu: "https://www.amazon.co.jp/s?k=%E7%99%BD%E5%B7%9E+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&i=grocery&tag=your-associate-id-22",
-    hibiki: "https://www.amazon.co.jp/s?k=%E9%9F%BF+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&i=grocery&tag=your-associate-id-22",
+    yamazaki: "https://www.amazon.co.jp/s?k=%E5%B1%B1%E5%B4%8E+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&i=grocery&tag=httpblogbcoco-22",
+    hakushu: "https://www.amazon.co.jp/s?k=%E7%99%BD%E5%B7%9E+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&i=grocery&tag=httpblogbcoco-22",
+    hibiki: "https://www.amazon.co.jp/s?k=%E9%9F%BF+%E3%82%A6%E3%82%A4%E3%82%B9%E3%82%AD%E3%83%BC&i=grocery&tag=httpblogbcoco-22",
   },
 };
 
