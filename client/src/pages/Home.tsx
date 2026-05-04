@@ -6,6 +6,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import AffiliatePrograms from "@/components/AffiliatePrograms";
 
 // ===== Language Type =====
 type Lang = "en" | "ja";
@@ -1015,6 +1016,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== Affiliate Programs Section ===== */}
+      <AffiliatePrograms lang={lang} />
 
       {/* ===== Final CTA Section ===== */}
       <section className="py-24 relative overflow-hidden">
