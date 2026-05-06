@@ -1018,9 +1018,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Affiliate Programs Section ===== */}
-      <AffiliatePrograms lang={lang} />
-
       <InternationalBuy lang={lang} />
 
       {/* ===== Final CTA Section ===== */}
