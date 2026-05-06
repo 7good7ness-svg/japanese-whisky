@@ -228,9 +228,9 @@ const T = {
       title: "The Perfect Gift",
       desc: "Premium Japanese whisky for Father's Day, birthdays, weddings, and year-end gifts.",
       tiers: [
-        { budget: "Under ¥10,000", title: "Entry Gift", desc: "Perfect for beginners or everyday gifting", items: ["Yamazaki NV (¥5,500)", "Hakushu NV (¥5,500)", "Hibiki Japanese Harmony (¥5,500)"], link: AFFILIATE_LINKS.rakuten.yamazaki, btn: "Shop on Rakuten →" },
-        { budget: "¥10,000–¥50,000", title: "Premium Gift", desc: "For special occasions and distinguished recipients", items: ["Yamazaki 12 Year (market ¥30,000+)", "Hakushu 12 Year (market ¥25,000+)", "Hibiki 21 Year (¥55,000)"], link: AFFILIATE_LINKS.rakuten.yamazaki, btn: "Shop on Rakuten →" },
-        { budget: "¥50,000+", title: "Luxury Gift", desc: "The ultimate expression of gratitude", items: ["Yamazaki 18 Year (market ¥150,000+)", "Hibiki 21 Year Limited Edition", "Yamazaki 25 Year (ultra-rare)"], link: AFFILIATE_LINKS.rakuten.yamazaki, btn: "Shop on Rakuten →" },
+        { budget: "Under ¥10,000", title: "Entry Gift", desc: "Perfect for beginners or everyday gifting", items: ["Yamazaki NV (¥5,500)", "Hakushu NV (¥5,500)", "Hibiki Japanese Harmony (¥5,500)"], link: AFFILIATE_LINKS.amazon.yamazaki, btn: "Shop on Amazon →" },
+        { budget: "¥10,000–¥50,000", title: "Premium Gift", desc: "For special occasions and distinguished recipients", items: ["Yamazaki 12 Year (market ¥30,000+)", "Hakushu 12 Year (market ¥25,000+)", "Hibiki 21 Year (¥55,000)"], link: AFFILIATE_LINKS.amazon.yamazaki, btn: "Shop on Amazon →" },
+        { budget: "¥50,000+", title: "Luxury Gift", desc: "The ultimate expression of gratitude", items: ["Yamazaki 18 Year (market ¥150,000+)", "Hibiki 21 Year Limited Edition", "Yamazaki 25 Year (ultra-rare)"], link: AFFILIATE_LINKS.amazon.yamazaki, btn: "Shop on Amazon →" },
       ],
       budgetLabel: "Budget",
     },
@@ -279,8 +279,8 @@ const T = {
         { label: "Hibiki Whisky", href: "#hibiki" },
       ],
       buyLinks: [
-        { label: "Shop on Rakuten", href: AFFILIATE_LINKS.rakuten.yamazaki },
         { label: "Shop on Amazon", href: AFFILIATE_LINKS.amazon.yamazaki },
+        { label: "Shop on Rakuten", href: AFFILIATE_LINKS.rakuten.yamazaki },
       ],
       copyright: "© 2026 Japanese Whisky Guide. All rights reserved.",
       disclosure: "This site participates in affiliate programs (Rakuten Affiliate & Amazon Associates). We may earn a commission when you purchase through our links.",
@@ -462,9 +462,9 @@ const T = {
       title: "ギフト選びの完全ガイド",
       desc: "父の日・誕生日・お歳暮・結婚祝いに最適なプレミアムウイスキーをご提案。",
       tiers: [
-        { budget: "〜¥10,000", title: "エントリーギフト", desc: "ウイスキー入門者や普段使いのギフトに", items: ["山崎 NV（¥5,500）", "白州 NV（¥5,500）", "響 Japanese Harmony（¥5,500）"], link: AFFILIATE_LINKS.rakuten.yamazaki, btn: "楽天で探す →" },
-        { budget: "¥10,000〜¥50,000", title: "プレミアムギフト", desc: "特別な記念日や目上の方への贈り物に", items: ["山崎 12年（市場価格¥30,000〜）", "白州 12年（市場価格¥25,000〜）", "響 21年（¥55,000）"], link: AFFILIATE_LINKS.rakuten.yamazaki, btn: "楽天で探す →" },
-        { budget: "¥50,000〜", title: "ラグジュアリーギフト", desc: "最高の感謝を伝える究極の一本", items: ["山崎 18年（市場価格¥150,000〜）", "響 21年 限定品", "山崎 25年（超希少品）"], link: AFFILIATE_LINKS.rakuten.yamazaki, btn: "楽天で探す →" },
+        { budget: "〜¥10,000", title: "エントリーギフト", desc: "ウイスキー入門者や普段使いのギフトに", items: ["山崎 NV（¥5,500）", "白州 NV（¥5,500）", "響 Japanese Harmony（¥5,500）"], link: AFFILIATE_LINKS.amazon.yamazaki, btn: "Amazonで探す →" },
+        { budget: "¥10,000〜¥50,000", title: "プレミアムギフト", desc: "特別な記念日や目上の方への贈り物に", items: ["山崎 12年（市場価格¥30,000〜）", "白州 12年（市場価格¥25,000〜）", "響 21年（¥55,000）"], link: AFFILIATE_LINKS.amazon.yamazaki, btn: "Amazonで探す →" },
+        { budget: "¥50,000〜", title: "ラグジュアリーギフト", desc: "最高の感謝を伝える究極の一本", items: ["山崎 18年（市場価格¥150,000〜）", "響 21年 限定品", "山崎 25年（超希少品）"], link: AFFILIATE_LINKS.amazon.yamazaki, btn: "Amazonで探す →" },
       ],
       budgetLabel: "予算",
     },
@@ -513,8 +513,8 @@ const T = {
         { label: "響ウイスキー", href: "#hibiki" },
       ],
       buyLinks: [
-        { label: "楽天市場で探す", href: AFFILIATE_LINKS.rakuten.yamazaki },
         { label: "Amazonで探す", href: AFFILIATE_LINKS.amazon.yamazaki },
+        { label: "楽天市場で探す", href: AFFILIATE_LINKS.rakuten.yamazaki },
       ],
       copyright: "© 2026 ジャパニーズウイスキー完全ガイド. All rights reserved.",
       disclosure: "本サイトはアフィリエイトプログラム（楽天アフィリエイト・Amazonアソシエイト）に参加しています。掲載リンクから購入された場合、当サイトに報酬が発生することがあります。",
@@ -589,13 +589,13 @@ function ProductCard({ product, index }: { product: typeof T.en.products[0]; ind
           <p className="text-lg font-bold" style={{ color: "#F5F0E8", fontFamily: "'Playfair Display', serif" }}>{product.priceRange}</p>
         </div>
         <div className="flex flex-col gap-3">
-          <a href={product.rakutenLink} target="_blank" rel="noopener noreferrer nofollow"
-            className="btn-amber shimmer flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold rounded-sm">
-            {product.rakutenBtn}
-          </a>
           <a href={product.amazonLink} target="_blank" rel="noopener noreferrer nofollow"
-            className="btn-outline-amber flex items-center justify-center gap-2 px-6 py-3 text-sm rounded-sm">
+            className="btn-amber shimmer flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold rounded-sm">
             {product.amazonBtn}
+          </a>
+          <a href={product.rakutenLink} target="_blank" rel="noopener noreferrer nofollow"
+            className="btn-outline-amber flex items-center justify-center gap-2 px-6 py-3 text-sm rounded-sm">
+            {product.rakutenBtn}
           </a>
         </div>
       </div>
@@ -783,29 +783,8 @@ export default function Home() {
             <p className="text-sm max-w-xl mx-auto" style={{ color: "rgba(245, 240, 232, 0.6)" }}>{t.guide.desc}</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {/* Rakuten */}
-            <div className="p-8 rounded-sm border" style={{ borderColor: "rgba(201, 168, 76, 0.2)", backgroundColor: "rgba(26, 18, 8, 0.8)" }}>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold" style={{ backgroundColor: "rgba(181, 101, 29, 0.3)", color: "#C9A84C", fontFamily: "'Noto Serif JP', serif" }}>楽</div>
-                <div>
-                  <h3 className="text-lg font-bold" style={{ fontFamily: lang === "ja" ? "'Noto Serif JP', serif" : "'Playfair Display', serif", color: "#F5F0E8" }}>{t.guide.rakutenTitle}</h3>
-                  <p className="text-xs" style={{ color: "#C9A84C" }}>{t.guide.rakutenComm}</p>
-                </div>
-              </div>
-              <ul className="space-y-3 mb-6">
-                {t.guide.rakutenFeatures.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm" style={{ color: "rgba(245, 240, 232, 0.8)" }}>
-                    <span style={{ color: "#C9A84C" }}>✦</span>{item}
-                  </li>
-                ))}
-              </ul>
-              <a href={AFFILIATE_LINKS.rakuten.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
-                className="btn-amber shimmer w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold rounded-sm">
-                {t.guide.rakutenBtn}
-              </a>
-            </div>
-            {/* Amazon */}
-            <div className="p-8 rounded-sm border" style={{ borderColor: "rgba(201, 168, 76, 0.2)", backgroundColor: "rgba(26, 18, 8, 0.8)" }}>
+            {/* Amazon — primary */}
+            <div className="p-8 rounded-sm border" style={{ borderColor: "rgba(201, 168, 76, 0.35)", backgroundColor: "rgba(26, 18, 8, 0.8)" }}>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold" style={{ backgroundColor: "rgba(181, 101, 29, 0.3)", color: "#C9A84C" }}>A</div>
                 <div>
@@ -821,8 +800,29 @@ export default function Home() {
                 ))}
               </ul>
               <a href={AFFILIATE_LINKS.amazon.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
-                className="btn-outline-amber w-full flex items-center justify-center gap-2 px-6 py-3 text-sm rounded-sm">
+                className="btn-amber shimmer w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold rounded-sm">
                 {t.guide.amazonBtn}
+              </a>
+            </div>
+            {/* Rakuten — secondary */}
+            <div className="p-8 rounded-sm border" style={{ borderColor: "rgba(201, 168, 76, 0.2)", backgroundColor: "rgba(26, 18, 8, 0.8)" }}>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold" style={{ backgroundColor: "rgba(181, 101, 29, 0.15)", color: "#8B7355", fontFamily: "'Noto Serif JP', serif" }}>楽</div>
+                <div>
+                  <h3 className="text-lg font-bold" style={{ fontFamily: lang === "ja" ? "'Noto Serif JP', serif" : "'Playfair Display', serif", color: "#F5F0E8" }}>{t.guide.rakutenTitle}</h3>
+                  <p className="text-xs" style={{ color: "#8B7355" }}>{t.guide.rakutenComm}</p>
+                </div>
+              </div>
+              <ul className="space-y-3 mb-6">
+                {t.guide.rakutenFeatures.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm" style={{ color: "rgba(245, 240, 232, 0.6)" }}>
+                    <span style={{ color: "#8B7355" }}>✦</span>{item}
+                  </li>
+                ))}
+              </ul>
+              <a href={AFFILIATE_LINKS.rakuten.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
+                className="btn-outline-amber w-full flex items-center justify-center gap-2 px-6 py-3 text-sm rounded-sm">
+                {t.guide.rakutenBtn}
               </a>
             </div>
           </div>
@@ -951,7 +951,7 @@ export default function Home() {
                 <p className="text-xs" style={{ color: "rgba(245, 240, 232, 0.7)" }}>{t.urgency.desc}</p>
               </div>
             </div>
-            <a href={AFFILIATE_LINKS.rakuten.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
+            <a href={AFFILIATE_LINKS.amazon.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
               className="btn-amber shimmer px-6 py-2.5 text-xs font-bold rounded-sm whitespace-nowrap">
               {t.urgency.btn}
             </a>
@@ -1029,13 +1029,13 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 whitespace-pre-line" style={{ fontFamily: lang === "ja" ? "'Noto Serif JP', serif" : "'Playfair Display', serif", color: "#F5F0E8" }}>{t.cta.title}</h2>
           <p className="text-sm max-w-lg mx-auto mb-10" style={{ color: "rgba(245, 240, 232, 0.7)" }}>{t.cta.desc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={AFFILIATE_LINKS.rakuten.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
-              className="btn-amber shimmer px-10 py-4 text-sm font-bold rounded-sm inline-flex items-center justify-center gap-2">
-              {t.cta.btn1}
-            </a>
             <a href={AFFILIATE_LINKS.amazon.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
-              className="btn-outline-amber px-10 py-4 text-sm rounded-sm inline-flex items-center justify-center gap-2">
+              className="btn-amber shimmer px-10 py-4 text-sm font-bold rounded-sm inline-flex items-center justify-center gap-2">
               {t.cta.btn2}
+            </a>
+            <a href={AFFILIATE_LINKS.rakuten.yamazaki} target="_blank" rel="noopener noreferrer nofollow"
+              className="btn-outline-amber px-10 py-4 text-sm rounded-sm inline-flex items-center justify-center gap-2">
+              {t.cta.btn1}
             </a>
           </div>
         </div>
