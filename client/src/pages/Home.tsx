@@ -1066,8 +1066,13 @@ export default function Home() {
           <hr className="amber-rule mb-6" />
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: "#8B7355" }}>{t.footer.copyright}</p>
-            <p className="text-xs text-center" style={{ color: "#8B7355" }}>{t.footer.disclosure}</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="/privacy-policy" className="text-xs hover:text-amber-400 transition-colors" style={{ color: "#8B7355" }}>Privacy Policy</a>
+              <a href="/terms-of-service" className="text-xs hover:text-amber-400 transition-colors" style={{ color: "#8B7355" }}>Terms of Service</a>
+              <a href="/contact" className="text-xs hover:text-amber-400 transition-colors" style={{ color: "#8B7355" }}>Contact</a>
+            </div>
           </div>
+          <p className="text-xs text-center mt-4" style={{ color: "#8B7355" }}>{t.footer.disclosure}</p>
         </div>
       </footer>
     </div>
