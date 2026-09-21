@@ -3,8 +3,8 @@
 // Design: Dark luxury gold theme — matches the main site aesthetic
 // Purpose: Show international purchase links for Yamazaki / Hakushu / Hibiki
 //          across The Whisky Exchange, Master of Malt, and Flaviar.
-//          All affiliate links are placeholders — replace href with your
-//          affiliate-tagged URLs once you register with each program.
+//          The Whisky Exchange links go through Awin (Publisher 2884677 /
+//          Merchant 400). Master of Malt and Flaviar are still placeholders.
 // =============================================================================
 
 import React, { useState } from "react";
@@ -39,6 +39,18 @@ interface WhiskyProduct {
   links: ProductLink[];
 }
 
+// ---------------------------------------------------------------------------
+// Running promotion (update or remove when it ends)
+// ---------------------------------------------------------------------------
+const PROMO = {
+  active: true,
+  endsAt: "2026-09-23",
+  store: "The Whisky Exchange",
+  en: "Free UK delivery on all orders at The Whisky Exchange — until 23 September.",
+  ja: "The Whisky Exchange：全UK注文が送料無料（9月23日まで）。",
+  href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2F",
+};
+
 const PRODUCTS: WhiskyProduct[] = [
   {
     name: "Yamazaki 12 Year Old",
@@ -54,10 +66,10 @@ const PRODUCTS: WhiskyProduct[] = [
         flag: "🇬🇧",
         price: "138",
         currency: "£",
-        // ⬇️ REPLACE with your AWIN affiliate-tagged URL
-        href: "https://www.thewhiskyexchange.com/p/2940/yamazaki-12-year-old",
+        // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
+        href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F2940%2Fyamazaki-12-year-old",
         commission: "~8% via AWIN",
-        note: "Free UK delivery over £100 · Global shipping available",
+        note: "🚚 Free UK delivery on ALL orders (until 23 Sep) · Global shipping available",
       },
       {
         store: "Master of Malt",
@@ -97,10 +109,10 @@ const PRODUCTS: WhiskyProduct[] = [
         flag: "🇬🇧",
         price: "69.75",
         currency: "£",
-        // ⬇️ REPLACE with your AWIN affiliate-tagged URL
-        href: "https://www.thewhiskyexchange.com/p/23771/hakushu-distillers-reserve",
+        // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
+        href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F23771%2Fhakushu-distillers-reserve",
         commission: "~8% via AWIN",
-        note: "Free UK delivery over £100",
+        note: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
       {
         store: "Master of Malt",
@@ -129,10 +141,10 @@ const PRODUCTS: WhiskyProduct[] = [
         flag: "🇬🇧",
         price: "78.95",
         currency: "£",
-        // ⬇️ REPLACE with your AWIN affiliate-tagged URL
-        href: "https://www.thewhiskyexchange.com/p/29388/hibiki-harmony",
+        // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
+        href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F29388%2Fhibiki-harmony",
         commission: "~8% via AWIN",
-        note: "Free UK delivery over £100",
+        note: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
       {
         store: "Master of Malt",
@@ -211,10 +223,30 @@ export default function InternationalBuy({ lang }: Props) {
           </h2>
           <p className="text-stone-400 max-w-2xl mx-auto text-sm leading-relaxed">
             {isJa
-              ? "The Whisky Exchange・Master of Malt・Flaviarは日本国外への配送に対応しています。アフィリエイトリンクは後から差し替え可能です。"
-              : "The Whisky Exchange, Master of Malt, and Flaviar all ship internationally. Affiliate links below are ready to be replaced with your tagged URLs."}
+              ? "The Whisky Exchange・Master of Malt・Flaviarは日本国外への配送に対応しています。当サイトのリンクからご購入いただくと、当サイトに紹介料が入ります。"
+              : "The Whisky Exchange, Master of Malt, and Flaviar all ship internationally. Some links below are affiliate links — we may earn a commission at no extra cost to you."}
           </p>
         </div>
+
+        {/* Promotion Banner */}
+        {PROMO.active && (
+          <a
+            href={PROMO.href}
+            target="_blank"
+            rel="sponsored noopener noreferrer"
+            className="block mb-10 rounded-lg border border-amber-600/60 bg-gradient-to-r from-amber-950/60 to-transparent px-6 py-4 hover:border-amber-500 transition-colors"
+          >
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="text-xl">🚚</span>
+              <span className="text-amber-300 text-sm font-semibold">
+                {isJa ? PROMO.ja : PROMO.en}
+              </span>
+              <span className="ml-auto text-xs text-stone-400 border border-stone-700 rounded px-2 py-1">
+                {isJa ? `${PROMO.endsAt} まで` : `Ends ${PROMO.endsAt}`}
+              </span>
+            </div>
+          </a>
+        )}
 
         {/* Product Tabs */}
         <div className="flex gap-2 justify-center mb-10 flex-wrap">
