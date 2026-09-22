@@ -27,6 +27,8 @@ interface ProductLink {
   href: string;
   commission: string;
   note?: string;
+  /** プロモ期間中だけ note の代わりに表示する文言 */
+  promoNote?: string;
 }
 
 interface WhiskyProduct {
@@ -51,6 +53,22 @@ const PROMO = {
   href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2F",
 };
 
+/**
+ * プロモを表示してよいかどうか。endsAt の当日までは表示し、翌日から自動で消える。
+ * 終了時に手作業でコードを直す必要はない。
+ */
+function isPromoLive(): boolean {
+  if (!PROMO.active) return false;
+  const d = new Date();
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  return today <= PROMO.endsAt;
+}
+
+/** プロモ期間中だけ promoNote を優先して返す。 */
+function noteOf(link: ProductLink): string | undefined {
+  return isPromoLive() && link.promoNote ? link.promoNote : link.note;
+}
+
 const PRODUCTS: WhiskyProduct[] = [
   {
     name: "Yamazaki 12 Year Old",
@@ -69,7 +87,8 @@ const PRODUCTS: WhiskyProduct[] = [
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F2940%2Fyamazaki-12-year-old",
         commission: "~8% via AWIN",
-        note: "🚚 Free UK delivery on ALL orders (until 23 Sep) · Global shipping available",
+        note: "Free UK delivery over £100 · Global shipping available",
+        promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep) · Global shipping available",
       },
       {
         store: "Master of Malt",
@@ -112,7 +131,8 @@ const PRODUCTS: WhiskyProduct[] = [
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F23771%2Fhakushu-distillers-reserve",
         commission: "~8% via AWIN",
-        note: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
+        note: "Free UK delivery over £100",
+        promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
       {
         store: "Master of Malt",
@@ -144,7 +164,8 @@ const PRODUCTS: WhiskyProduct[] = [
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F29388%2Fhibiki-harmony",
         commission: "~8% via AWIN",
-        note: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
+        note: "Free UK delivery over £100",
+        promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
       {
         store: "Master of Malt",
@@ -229,7 +250,7 @@ export default function InternationalBuy({ lang }: Props) {
         </div>
 
         {/* Promotion Banner */}
-        {PROMO.active && (
+        {isPromoLive() && (
           <a
             href={PROMO.href}
             target="_blank"
@@ -298,8 +319,8 @@ export default function InternationalBuy({ lang }: Props) {
                       <div className="font-semibold text-stone-200 group-hover:text-amber-400 transition-colors">
                         {link.store}
                       </div>
-                      {link.note && (
-                        <div className="text-xs text-stone-500 mt-0.5">{link.note}</div>
+                      {noteOf(link) && (
+                        <div className="text-xs text-stone-500 mt-0.5">{noteOf(link)}</div>
                       )}
                     </div>
                   </div>
