@@ -6,7 +6,6 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import AffiliatePrograms from "@/components/AffiliatePrograms";
 import InternationalBuy from "@/components/InternationalBuy";
 
 // ===== Language Type =====

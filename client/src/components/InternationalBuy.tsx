@@ -25,7 +25,6 @@ interface ProductLink {
   price: string;
   currency: string;
   href: string;
-  commission: string;
   note?: string;
   /** プロモ期間中だけ note の代わりに表示する文言 */
   promoNote?: string;
@@ -45,7 +44,9 @@ interface WhiskyProduct {
 // Running promotion (update or remove when it ends)
 // ---------------------------------------------------------------------------
 const PROMO = {
-  active: true,
+  // 2026-09-23 で終了済み。次のプロモが来たら active:true と endsAt を更新する。
+  // Awin から The Whisky Exchange のプロモ案内メールが不定期に届く。
+  active: false,
   endsAt: "2026-09-23",
   store: "The Whisky Exchange",
   en: "Free UK delivery on all orders at The Whisky Exchange — until 23 September.",
@@ -86,7 +87,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "£",
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F2940%2Fyamazaki-12-year-old",
-        commission: "~8% via AWIN",
         note: "Free UK delivery over £100 · Global shipping available",
         promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep) · Global shipping available",
       },
@@ -98,7 +98,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "£",
         // ⬇️ REPLACE with your Adtraction affiliate-tagged URL
         href: "https://www.masterofmalt.com/whiskies/yamazaki-japanese/yamazaki-12-year-old-whisky/",
-        commission: "~5% via Adtraction",
         note: "Free delivery over £99 · 158 customer reviews",
       },
       {
@@ -109,7 +108,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "$",
         // ⬇️ REPLACE with your Flaviar affiliate-tagged URL
         href: "https://flaviar.com/products/yamazaki-12-year-old-single-malt-whisky-750",
-        commission: "5% retail / up to 60% on memberships",
         note: "US market · Members-only access",
       },
     ],
@@ -130,7 +128,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "£",
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F23771%2Fhakushu-distillers-reserve",
-        commission: "~8% via AWIN",
         note: "Free UK delivery over £100",
         promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
@@ -142,7 +139,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "£",
         // ⬇️ REPLACE with your Adtraction affiliate-tagged URL
         href: "https://www.masterofmalt.com/whiskies/hakushu-japanese/hakushu-distillers-reserve-whisky/",
-        commission: "~5% via Adtraction",
         note: "Free delivery over £99",
       },
     ],
@@ -163,7 +159,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "£",
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F29388%2Fhibiki-harmony",
-        commission: "~8% via AWIN",
         note: "Free UK delivery over £100",
         promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
@@ -175,7 +170,6 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "£",
         // ⬇️ REPLACE with your Adtraction affiliate-tagged URL
         href: "https://www.masterofmalt.com/whiskies/hibiki-japanese/hibiki-harmony-whisky/",
-        commission: "~5% via Adtraction",
         note: "Free delivery over £99",
       },
       {
@@ -186,39 +180,12 @@ const PRODUCTS: WhiskyProduct[] = [
         currency: "$",
         // ⬇️ REPLACE with your Flaviar affiliate-tagged URL
         href: "https://flaviar.com/collections/hibiki",
-        commission: "5% retail / up to 60% on memberships",
         note: "US market · Members-only access",
       },
     ],
   },
 ];
 
-// ---------------------------------------------------------------------------
-// High-commission affiliate registration links (for the site owner)
-// ---------------------------------------------------------------------------
-const AFFILIATE_PROGRAMS = [
-  {
-    name: "The Whisky Exchange",
-    url: "https://www.thewhiskyexchange.com/affiliates",
-    commission: "~8%",
-    network: "AWIN",
-    flag: "🇬🇧",
-  },
-  {
-    name: "Master of Malt",
-    url: "https://www.masterofmalt.com/affiliates",
-    commission: "~5%",
-    network: "Adtraction",
-    flag: "🇬🇧",
-  },
-  {
-    name: "Flaviar",
-    url: "https://flaviar.com/pages/affiliates",
-    commission: "Up to 60% (memberships)",
-    network: "Direct",
-    flag: "🇺🇸",
-  },
-];
 
 interface Props {
   lang: "en" | "ja";
@@ -310,7 +277,7 @@ export default function InternationalBuy({ lang }: Props) {
                   key={i}
                   href={link.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="sponsored noopener noreferrer"
                   className="flex items-center justify-between p-4 bg-stone-800/60 border border-stone-700/50 rounded-xl hover:border-amber-600/50 hover:bg-stone-800 transition-all duration-200 group"
                 >
                   <div className="flex items-center gap-4">
@@ -328,9 +295,6 @@ export default function InternationalBuy({ lang }: Props) {
                     <div className="text-lg font-bold text-amber-400">
                       {link.currency}{link.price}
                     </div>
-                    <div className="text-xs text-stone-500">
-                      {isJa ? "アフィリエイト登録後に差替" : "Replace with affiliate link"}
-                    </div>
                   </div>
                 </a>
               ))}
@@ -338,37 +302,6 @@ export default function InternationalBuy({ lang }: Props) {
           </div>
         </div>
 
-        {/* Affiliate Registration Banner */}
-        <div className="bg-amber-950/30 border border-amber-800/40 rounded-xl p-6">
-          <h4 className="text-amber-400 font-semibold mb-4 text-center">
-            {isJa
-              ? "🔗 アフィリエイト登録リンク（サイトオーナー向け）"
-              : "🔗 Affiliate Program Registration Links (For Site Owner)"}
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {AFFILIATE_PROGRAMS.map((prog, i) => (
-              <a
-                key={i}
-                href={prog.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center p-4 bg-stone-900/60 border border-stone-700/50 rounded-lg hover:border-amber-600/50 transition-all text-center group"
-              >
-                <span className="text-2xl mb-2">{prog.flag}</span>
-                <div className="font-medium text-stone-300 group-hover:text-amber-400 transition-colors text-sm">
-                  {prog.name}
-                </div>
-                <div className="text-amber-500 font-bold text-sm mt-1">{prog.commission}</div>
-                <div className="text-xs text-stone-500 mt-0.5">{prog.network}</div>
-              </a>
-            ))}
-          </div>
-          <p className="text-center text-xs text-stone-500 mt-4">
-            {isJa
-              ? "各プログラムに登録後、上記の商品リンクをアフィリエイトタグ付きURLに差し替えてください。"
-              : "After registering with each program, replace the product links above with your affiliate-tagged URLs."}
-          </p>
-        </div>
 
       </div>
     </section>
