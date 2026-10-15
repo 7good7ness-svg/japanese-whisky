@@ -8,7 +8,8 @@
 //   GA4_PROPERTY_ID           GA4 のプロパティID（数字のみ。例 512345678）
 //   GA4_SERVICE_ACCOUNT_JSON  Google Cloud サービスアカウントの鍵JSON（中身まるごと）
 //   LINE_CHANNEL_ACCESS_TOKEN LINE Messaging API のチャネルアクセストークン（長期）
-//   LINE_USER_ID              （任意）送り先のユーザーID。未設定なら公式アカウントの友だち全員に送信
+//   LINE_USER_ID              送り先（自分）のLINEユーザーID。LINE Developers のチャネル基本設定にある「あなたのユーザーID」（U で始まる）
+//                             ※一斉送信（broadcast）は友だち全員に届くため使わない
 //
 // ローカル確認:  node scripts/analytics-report.mjs --dry-run   （LINEに送らず本文を表示）
 // =============================================================================
@@ -173,11 +174,9 @@ export function formatMessage(d, date = new Date(Date.now() - 86400000)) {
 // --- LINE 送信 ----------------------------------------------------------------
 async function sendLine(text) {
   const token = env("LINE_CHANNEL_ACCESS_TOKEN");
-  const to = env("LINE_USER_ID", { optional: true });
-  const url = to ? "https://api.line.me/v2/bot/message/push" : "https://api.line.me/v2/bot/message/broadcast";
-  const body = { messages: [{ type: "text", text: text.slice(0, 5000) }] };
-  if (to) body.to = to;
-  const res = await fetch(url, {
+  const to = env("LINE_USER_ID");
+  const body = { to, messages: [{ type: "text", text: text.slice(0, 5000) }] };
+  const res = await fetch("https://api.line.me/v2/bot/message/push", {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -211,7 +210,7 @@ if (isMain) {
   } catch (e) {
     console.error(e.message);
     // 失敗時もLINEに知らせる（トークンがあれば）
-    if (!DRY_RUN && process.env.LINE_CHANNEL_ACCESS_TOKEN) {
+    if (!DRY_RUN && process.env.LINE_CHANNEL_ACCESS_TOKEN && process.env.LINE_USER_ID) {
       await sendLine(`⚠️ ウイスキーサイト日報の取得に失敗しました\n${e.message.slice(0, 300)}`).catch(() => {});
     }
     process.exit(1);
