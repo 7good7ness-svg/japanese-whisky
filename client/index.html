@@ -202,6 +202,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
   <script>(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)}('https://utt.impactcdn.com/P-A7265534-8673-4afd-b586-549cfac356be1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+    <!-- Google Analytics 4 + アフィリエイトクリック計測
+         GA_ID に測定ID（G-XXXXXXXXXX）を入れると計測開始。空のままなら何も読み込まない。 -->
+    <script>
+      (function () {
+        var GA_ID = "";
+        if (!GA_ID || location.hostname !== "japanese-whisky.pages.dev") return;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag("js", new Date());
+        gtag("config", GA_ID);
+
+        // どのアフィリエイトリンクが押されたかを network 名つきで記録する
+        var NETWORKS = [
+          ["awin1.com", "awin_twe"],
+          ["afl.rakuten.co.jp", "rakuten"],
+          ["affiliate.rakuten.co.jp", "rakuten"],
+          ["amazon.co.jp", "amazon"],
+          ["amzn.to", "amazon"],
+          ["masterofmalt.com", "master_of_malt"],
+          ["flaviar.com", "flaviar"],
+          ["adtraction.com", "adtraction"],
+          ["impact.com", "impact"],
+          ["sjv.io", "impact"]
+        ];
+        document.addEventListener("click", function (e) {
+          var a = e.target && e.target.closest && e.target.closest("a[href]");
+          if (!a) return;
+          var host;
+          try { host = new URL(a.href).hostname; } catch (_) { return; }
+          for (var i = 0; i < NETWORKS.length; i++) {
+            if (host === NETWORKS[i][0] || host.endsWith("." + NETWORKS[i][0])) {
+              // イベント名に network を含める（aff_rakuten 等）→ GA4側の追加設定なしで集計できる
+              gtag("event", "aff_" + NETWORKS[i][1], {
+                link_url: a.href.slice(0, 100),
+                link_text: (a.textContent || "").trim().slice(0, 60)
+              });
+              return;
+            }
+          }
+        }, true);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
