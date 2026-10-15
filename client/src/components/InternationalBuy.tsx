@@ -1,7 +1,8 @@
 // =============================================================================
 // InternationalBuy.tsx
 // Design: Dark luxury gold theme — matches the main site aesthetic
-// Purpose: Show international purchase links for Yamazaki / Hakushu / Hibiki
+// Purpose: Show international purchase links for Chichibu / Yamazaki / Hakushu / Hibiki,
+//          plus a running promo banner and limited-time TWE deals
 //          across The Whisky Exchange, Master of Malt, and Flaviar.
 //          The Whisky Exchange links go through Awin (Publisher 2884677 /
 //          Merchant 400). Master of Malt and Flaviar are still placeholders.
@@ -41,18 +42,78 @@ interface WhiskyProduct {
 }
 
 // ---------------------------------------------------------------------------
+// Awin tracking link helper (Publisher 2884677 / Merchant 400 = The Whisky Exchange)
+// ---------------------------------------------------------------------------
+const twe = (path: string) =>
+  `https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=${encodeURIComponent(
+    `https://www.thewhiskyexchange.com${path}`
+  )}`;
+
+/** YYYY-MM-DD（ローカル日付）。endsAt との比較用。 */
+function todayStr(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// ---------------------------------------------------------------------------
 // Running promotion (update or remove when it ends)
 // ---------------------------------------------------------------------------
 const PROMO = {
-  // 2026-09-23 で終了済み。次のプロモが来たら active:true と endsAt を更新する。
-  // Awin から The Whisky Exchange のプロモ案内メールが不定期に届く。
-  active: false,
-  endsAt: "2026-09-23",
+  // 2026-10-09 Awin メール「Chichibu London Edition 2026」より。英国限定・数量限定のため
+  // 売り切れ次第 active:false にする。endsAt を過ぎると自動で非表示。
+  active: true,
+  endsAt: "2026-12-31",
+  icon: "🥃",
   store: "The Whisky Exchange",
-  en: "Free UK delivery on all orders at The Whisky Exchange — until 23 September.",
-  ja: "The Whisky Exchange：全UK注文が送料無料（9月23日まで）。",
-  href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2F",
+  en: "New release: Chichibu London Edition 2026 — UK-exclusive Japanese single malt, £210. Limited stock.",
+  ja: "新発売：秩父 ロンドンエディション 2026 — 英国限定のジャパニーズシングルモルト（£210）。数量限定。",
+  href: twe("/p/88381/chichibu-london-edition-2026"),
 };
+
+// ---------------------------------------------------------------------------
+// Limited-time deals at The Whisky Exchange (from Awin promo emails)
+// endsAt を過ぎたものは自動で非表示。終了日が告知されていないものは仮の日付。
+// ---------------------------------------------------------------------------
+interface Deal {
+  titleEn: string;
+  titleJa: string;
+  bodyEn: string;
+  bodyJa: string;
+  price: string;
+  wasPrice?: string;
+  badgeEn: string;
+  badgeJa: string;
+  href: string;
+  endsAt: string;
+}
+
+const DEALS: Deal[] = [
+  {
+    // 2026-10-13 Awin メール。終了日の告知なし → 仮に 10/31
+    titleEn: "Scapa 2003 19 Year Old (TWE Exclusive)",
+    titleJa: "スキャパ 2003 19年（TWE限定）",
+    bodyEn: "Cask-strength Orkney single malt from first-fill American oak. Apricot, marmalade and fudge.",
+    bodyJa: "オークニー島のカスクストレングス。ファーストフィル米国産オーク樽で19年熟成。杏やマーマレード、ファッジの甘み。",
+    price: "£120",
+    wasPrice: "£185",
+    badgeEn: "Save £65",
+    badgeJa: "£65オフ",
+    href: twe("/p/67780/scapa-2003-19-year-old-exclusive-to-the-whisky-exchange"),
+    endsAt: "2026-10-31",
+  },
+  {
+    // 2026-10-14 Awin メール。単一カスクのため早期完売の可能性大 → 仮に 11/30
+    titleEn: "The Whisky Show 2026 Exclusives",
+    titleJa: "Whisky Show 2026 限定ボトル",
+    bodyEn: "Six single-cask bottlings released for The Whisky Show — Port Charlotte 20yo, Jura 20yo, Knob Creek and more. From £81.95.",
+    bodyJa: "ウイスキーショー2026のために詰められたシングルカスク6本。ポートシャーロット20年、ジュラ20年、ノブクリークなど。£81.95〜。",
+    price: "£81.95〜",
+    badgeEn: "Single cask",
+    badgeJa: "シングルカスク",
+    href: twe("/d/1274/whisky-show-exclusives"),
+    endsAt: "2026-11-30",
+  },
+];
 
 /**
  * プロモを表示してよいかどうか。endsAt の当日までは表示し、翌日から自動で消える。
@@ -60,9 +121,7 @@ const PROMO = {
  */
 function isPromoLive(): boolean {
   if (!PROMO.active) return false;
-  const d = new Date();
-  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  return today <= PROMO.endsAt;
+  return todayStr() <= PROMO.endsAt;
 }
 
 /** プロモ期間中だけ promoNote を優先して返す。 */
@@ -71,6 +130,26 @@ function noteOf(link: ProductLink): string | undefined {
 }
 
 const PRODUCTS: WhiskyProduct[] = [
+  {
+    // 2026-10-09 Awin メールで告知された新作。英国限定のため TWE のみ。
+    name: "Chichibu London Edition 2026",
+    nameJa: "秩父 ロンドンエディション 2026",
+    age: "NAS",
+    abv: "Single Malt",
+    description: "UK-exclusive Chichibu vatted from 16 casks — ex-bourbon plus Californian and New Zealand wine casks. Honey, grapefruit peel and stone fruit.",
+    descriptionJa: "ベンチャーウイスキー秩父の英国限定ボトル。16樽をヴァッティングし、バーボン樽にカリフォルニア・NZのワイン樽を合わせた9作目。蜂蜜、グレープフルーツの皮、桃や杏の香り。",
+    links: [
+      {
+        store: "The Whisky Exchange",
+        storeShort: "TWE",
+        flag: "🇬🇧",
+        price: "210",
+        currency: "£",
+        href: twe("/p/88381/chichibu-london-edition-2026"),
+        note: "🆕 New release · UK exclusive · Limited stock · Global shipping available",
+      },
+    ],
+  },
   {
     name: "Yamazaki 12 Year Old",
     nameJa: "山崎12年",
@@ -88,7 +167,6 @@ const PRODUCTS: WhiskyProduct[] = [
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F2940%2Fyamazaki-12-year-old",
         note: "Free UK delivery over £100 · Global shipping available",
-        promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep) · Global shipping available",
       },
       {
         store: "Master of Malt",
@@ -129,7 +207,6 @@ const PRODUCTS: WhiskyProduct[] = [
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F23771%2Fhakushu-distillers-reserve",
         note: "Free UK delivery over £100",
-        promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
       {
         store: "Master of Malt",
@@ -160,7 +237,6 @@ const PRODUCTS: WhiskyProduct[] = [
         // Awin トラッキングリンク（Publisher 2884677 / Merchant 400）2026-09-21 設定
         href: "https://www.awin1.com/cread.php?awinmid=400&awinaffid=2884677&ued=https%3A%2F%2Fwww.thewhiskyexchange.com%2Fp%2F29388%2Fhibiki-harmony",
         note: "Free UK delivery over £100",
-        promoNote: "🚚 Free UK delivery on ALL orders (until 23 Sep)",
       },
       {
         store: "Master of Malt",
@@ -225,7 +301,7 @@ export default function InternationalBuy({ lang }: Props) {
             className="block mb-10 rounded-lg border border-amber-600/60 bg-gradient-to-r from-amber-950/60 to-transparent px-6 py-4 hover:border-amber-500 transition-colors"
           >
             <div className="flex items-center gap-3 flex-wrap">
-              <span className="text-xl">🚚</span>
+              <span className="text-xl">{PROMO.icon}</span>
               <span className="text-amber-300 text-sm font-semibold">
                 {isJa ? PROMO.ja : PROMO.en}
               </span>
@@ -302,6 +378,42 @@ export default function InternationalBuy({ lang }: Props) {
           </div>
         </div>
 
+        {/* Limited-time Deals */}
+        {DEALS.some((d) => todayStr() <= d.endsAt) && (
+          <div className="mt-2">
+            <p className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-4 font-medium text-center">
+              {isJa ? "期間限定・The Whisky Exchange のお得情報" : "Limited-time picks at The Whisky Exchange"}
+            </p>
+            <div className="grid gap-4 md:grid-cols-2">
+              {DEALS.filter((d) => todayStr() <= d.endsAt).map((d, i) => (
+                <a
+                  key={i}
+                  href={d.href}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                  className="block p-5 bg-stone-900/60 border border-amber-900/30 rounded-xl hover:border-amber-600/60 transition-all duration-200 group"
+                >
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h4 className="font-semibold text-stone-200 group-hover:text-amber-400 transition-colors">
+                      {isJa ? d.titleJa : d.titleEn}
+                    </h4>
+                    <span className="shrink-0 text-[11px] font-semibold text-amber-300 border border-amber-700/60 rounded px-2 py-0.5">
+                      {isJa ? d.badgeJa : d.badgeEn}
+                    </span>
+                  </div>
+                  <p className="text-xs text-stone-500 leading-relaxed mb-3">{isJa ? d.bodyJa : d.bodyEn}</p>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-lg font-bold text-amber-400">{d.price}</span>
+                    {d.wasPrice && <span className="text-sm text-stone-500 line-through">{d.wasPrice}</span>}
+                    <span className="ml-auto text-xs text-amber-500 group-hover:underline">
+                      {isJa ? "TWEで見る →" : "View at TWE →"}
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
       </div>
     </section>
